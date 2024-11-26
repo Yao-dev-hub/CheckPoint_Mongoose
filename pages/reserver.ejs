@@ -1,0 +1,78 @@
+<%- include('./global/navBar.ejs') %>
+
+<section class="reserver">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="card border-0 my-5">
+          <h2 class="text-center">Reservation</h2>
+          <div class="card-body row ">
+            <div class="col-lg-6 align-items-center  ">
+              <form id="submitForm">
+                <div class="col-lg-12 my-1">
+                  <input type="text" class="form-control" id="nom" placeholder="Votre nom">
+                </div>
+                <div class="col-lg-12 my-1">
+                  <input type="text" class="form-control" id="nom" placeholder="Votre prenom">
+                </div>
+
+                <div class="col-lg-12 my-1">
+                  <input type="text" class="form-control" id="adresse" placeholder="Votre adresse">
+                </div>
+                <div class="col-lg-12 my-1">
+                  <input type="number" class="form-control" min="0" id="nbrePlace" placeholder="Nombre de place">
+                </div>
+                <div class="col-lg-12 my-1">
+                    <input type="text" class="form-control" id="ville" placeholder="Entrez votre ville">
+                  </div>
+                <div class="col-lg-12 my-1">
+                  <input type="text" class="form-control" id="film" placeholder="Entrez le titre du film">
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label ms-1">Ajouter une photo</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+                <div class="mb-3">
+                    <p class="btn btn-warning fw-bold text-center w-100 rounded-2" id="message" style="display: none;"></p>
+                </div>
+                <div class="col-lg-12 my-2">
+                  <button type="submit" id="submitBtn" class="w-100 btn btn-danger fw-bold">Soumettre</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-6">
+              
+              <div class="card border-0 p-5 my-1">
+                <div class="col-md-12">
+                  <h4 class="text-start fw-bold">titre du film</h4>
+                  <p>Categorie du film: comedie</p>
+                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus, architecto ipsam. Similique ut debitis architecto. Nisi, aliquam fuga deserunt architecto autem impedit dolorem magnam saepe nostrum inventore, excepturi ratione nobis!</p>
+                  <p class="text-start">Qui peut voir ce film ?</p>
+                  <p class="text-danger fw-bold">Déconseillez <span class="btn btn-dark ps-2 rounded-circle text-center fw-bold">-10</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<%- include('./global/footer.ejs') %>
+
+<script>
+    let submitForm = document.getElementById("submitForm")
+    submitForm.addEventListener('submit', async (e) => {
+      let submitBtn = document.getElementById("submitBtn")
+      let formFile = document.getElementById("formFile").value
+      let nom = document.getElementById("nom").value
+      let prenom = document.getElementById("prenom").value
+      let adresse = document.getElementById("adresse").value
+      let tel = document.getElementById("tel").value
+      let ville = document.getElementById("ville").value
+      let nbrePlace = document.getElementById("nbrePlace").value
+      let film = document.getElementById("film").value
+
+      
+    })
+</script>

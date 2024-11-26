@@ -1,0 +1,100 @@
+<%- include('./global/navBar.ejs') %>
+
+<section class="inscription">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-lg-6 my-5 shadow p-5" style="border-radius: 20px;">
+                <form id="submitForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" name="nom" id="nom" class="form-control my-2" placeholder="nom" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="prenom" id="prenom" class="form-control my-2" placeholder="prenom" required>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="email" name="email" id="email" class="form-control my-2" placeholder="email" required>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="password" name="password" id="password" class="form-control my-2" placeholder="mot de passe" required>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="tel" name="tel" id="tel" class="form-control my-2" placeholder="votre numero" required>
+                        </div>
+                        <div class="col-md-12 my-2">
+                            <div class="mb-3">
+                                <div class="form-floating">
+                                    <select class="form-select"  id="sexe" aria-label="Floating label select example">
+                                      <option value="Sélectionnez votre sexe">Sélectionnez votre sexe</option>
+                                      <option value="Homme">Homme</option>
+                                      <option value="Femme">Femme</option>
+                                    </select>
+                                    <label for="floatingSelect">Genre</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="number" name="age" id="age" min="0" class="form-control my-2" placeholder="votre age" required>
+                        </div>
+                        <div class="co-md-12">
+                            <p class="btn btn-warning fw-bold text-center w-100 rounded-2" id="message" style="display: none;"></p>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" id="submitBtn" class="btn btn-primary p-2 rounded-2 w-100 fw-bold text-center">S'inscrire</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<%- include('./global/footer.ejs') %>
+
+<script>
+    let submitForm = document.getElementById("submitForm")
+    let submitBtn  = document.getElementById("submitBtn")
+    submitForm.addEventListener('submit', async(e) => {
+        e.preventDefault()
+
+        let nom = document.getElementById("nom").value
+        let prenom = document.getElementById("prenom").value
+        let email = document.getElementById("email").value
+        let password = document.getElementById("password").value
+        let sexe = document.getElementById("sexe").value
+        let age = document.getElementById("age").value
+        let tel = document.getElementById("tel").value
+        let message = document.getElementById("message")
+
+        
+        message.innerHTML = ""
+        
+        setTimeout(()=>{
+                submitBtn.innerHTML = `<i class="fa fa-spinner fa-spin"></i> Traitement en cours`
+            },2000)
+
+        let requette = await fetch("/signupForm",{
+            headers:{"Content-type":"application/json"},
+            method:"post",
+            body:JSON.stringify({nom,prenom,email,tel,age,password,sexe})
+        })
+
+        let reponse = await requette.json()
+
+        if(reponse.message === "ok"){
+            setTimeout(()=>{
+                submitBtn.innerHTML = `S'inscrire`
+                submitForm.reset()
+                document.location.href = "/connexion"
+            },1000)
+        }else{
+            message.style.display ="block"
+            message.innerHTML = reponse.message
+            submitBtn.innerHTML = `S'inscrire`
+        }
+        
+        
+    })
+</script>

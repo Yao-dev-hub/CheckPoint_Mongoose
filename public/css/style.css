@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.color-nav{
+    background-color: rgba(199, 199, 199, 0.447);
+}
+
+.banniere{
+    background-image: url("/img/img11.avif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    height: 400px;
+}
+
+.footer{
+    height: 200px;
+    
+}
